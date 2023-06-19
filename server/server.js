@@ -1,10 +1,21 @@
 const express = require('express');
-const path = require('path');
+// commented out this code as it isn't needed with GraphQL
+// const path = require('path');
 const db = require('./config/connection');
-const routes = require('./routes');
+// commented out this code as it isn't needed with GraphQL
+// const routes = require('./routes');
+// Imported ApolloServer 
+const { ApolloServer } = require('apollo-server-express')
 
+// Imported the two parts of a GraphQL schema
+const { typeDefs, resolves } = require('./schemas')
 const app = express();
 const PORT = process.env.PORT || 3001;
+// Added new server variable 
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+})
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
