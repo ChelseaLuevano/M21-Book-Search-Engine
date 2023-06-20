@@ -22,9 +22,9 @@ app.use(express.json());
 
 // if we're in production, serve client/build as static assets -  commented out this code as it isn't needed with GraphQL
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 // Create a new instance of an Apollo Server with the GraphQL Schema
 const startApolloServer = async (typeDefs, resolvers) => {

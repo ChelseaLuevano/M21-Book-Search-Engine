@@ -5,7 +5,7 @@ import {
   Form,
   Button,
   Card,
-  Row
+  Row, 
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
