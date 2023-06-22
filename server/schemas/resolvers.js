@@ -6,6 +6,10 @@ const resolvers = {
         return await Book.find({}).populate('savedBooks')
        }
     }
+
+    // Mutation: {
+    //     addUser: async()
+    // }
 };
 
 module.exports = resolvers 
