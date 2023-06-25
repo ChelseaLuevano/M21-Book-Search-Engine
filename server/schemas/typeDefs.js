@@ -19,7 +19,14 @@ const typeDefs = gql `
 
     type Query {
         savedBooks: [Book]
+        users: [User]
+        // do I want this parameter of username here?
+        user(username: String!): User
     }
+
+    // type Mutation {
+    //     addUser:(username: String, email: String, password: String): User
+    // }
 `;
 
 module.exports = typeDefs;
