@@ -2,31 +2,52 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql `
     type User {
-        username: String,
-        email: String,
-        password: String,
+        _id: ID!
+        username: String
+        email: String
+        password: String
         savedBooks: [Book]
     }
 
     type Book {
-        _id: ID
-        authors: String,
+        authors: [String]
         description: String
-        image: String,
-        link: String,
+        bookId: ID
+        image: String
+        link: String
         title: String
     }
 
-    type Query {
-        savedBooks: [Book]
-        users: [User]
-        // do I want this parameter of username here?
-        user(username: String!): User
+    type Authorization {
+        token: ID
+        // This user is referencing the User Type above
+        user: User
     }
 
-    // type Mutation {
-    //     addUser:(username: String, email: String, password: String): User
-    // }
+    // this is where we put all Book model's required inputs
+    input BookInput {
+        authors: [String]
+        description: String
+        image: String
+        link: String
+        title: String
+        bookId: ID
+    }
+
+    type Query {
+        // Get Single User that is logged in
+        me: User
+    }
+
+    type Mutation {
+        // Add/Create User
+        addUser(username: String!, email: String!, password: String!): Authorization
+        login(username: String!, email: String!, password: String!): Authorization
+        savedBooks(bookData: BookInput!): User
+        deleteBook(bookId: ID!): User
+    }
+
+
 `;
 
 module.exports = typeDefs;
