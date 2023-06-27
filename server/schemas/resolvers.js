@@ -16,7 +16,7 @@ const resolvers = {
                 const userAccount = await User.findOne({email})
 
                 if (!userAccount) {
-                    throw new AutheniticationError('No user account with this username found!')
+                    throw new AuthenticationError('No user account with this username found!')
                 }
 
                 const correctPW = await userAccount.isCorrectPassword(password)
